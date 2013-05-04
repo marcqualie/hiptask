@@ -9,9 +9,11 @@ module Hiptask
 
         default_task :list
 
+
         @@config = {}
         @@config_file = ENV['HOME'] + '/.hiptask/config.yml'
         @@tasks_file = ENV['HOME'] + '/.hiptask/tasks.txt'
+        @@message = nil
 
 
         def self.start(argv)
@@ -67,18 +69,24 @@ module Hiptask
         def list()
 
             puts " "
+            puts "  \033[33m[ \033[1m#{@@message}\033[0;33m ]\033[0m\n\n" if @@message
+
             puts "  \033[32;1m#{@@list.items.length} Items\033[0m"
             puts " "
-            @@list.items.each_with_index do |item, index|
-                index = index + 1
-                print "  \033[33m#{index.to_s.ljust(2)}\033[0m"
-                if item.start_with? ">"
-                    print " [x] "
-                    puts "#{item[1, item.length - 1]}"
-                else
-                    print " [ ] "
-                    puts "#{item}"
-                end
+            if @@list.items.length > 0
+                @@list.items.each_with_index { |item, index|
+                    index = index + 1
+                    print "  \033[33m#{index.to_s.ljust(2)}\033[0m"
+                    if item.start_with? ">"
+                        print " [x] "
+                        puts "#{item[1, item.length - 1]}"
+                    else
+                        print " [ ] "
+                        puts "#{item}"
+                    end
+                }
+            else
+                puts "  \033[33mAdd a new task with: \033[1mhiptask add \"Get milk\"\033[0m"
             end
             puts " "
 
@@ -88,6 +96,7 @@ module Hiptask
         desc "add CONTENT", "Add a new task"
         def add(content)
             @@list.add(content)
+            @@message = "Task #{@@list.items.length - 1} was created"
             list
         end
 
@@ -95,6 +104,7 @@ module Hiptask
         desc "do ID", "Complete a task"
         def do(id)
             @@list.do(id)
+            @@message = "Task #{id} is now marked as complete"
             list
         end
 
@@ -102,6 +112,7 @@ module Hiptask
         desc "undo ID", "Un-complete a task"
         def undo(id)
             @@list.undo(id)
+            @@message = "Task #{id} is now marked as incomplete"
             list
         end
 
@@ -109,6 +120,7 @@ module Hiptask
         desc "update ID CONTENT", "Update a task"
         def update(id, content)
             @@list.update(id, content)
+            @@message = "Task #{id} updated"
             list
         end
 
@@ -116,6 +128,7 @@ module Hiptask
         desc "delete ID", "Delete a task"
         def delete(id)
             @@list.delete(id)
+            @@message = "Task #{id} deleted"
             list
         end
 
