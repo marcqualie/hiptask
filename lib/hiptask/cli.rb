@@ -1,5 +1,6 @@
 require 'thor'
 require 'hiptask/list'
+require 'hiptask/version'
 
 module Hiptask
 
@@ -61,6 +62,13 @@ module Hiptask
             @@list.delete(id)
             list
         end
+
+
+        desc "version", "Displays current version"
+        def version
+            puts "Hiptask #{Hiptask::VERSION}"
+        end
+
 
     end
 
