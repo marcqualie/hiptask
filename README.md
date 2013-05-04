@@ -9,6 +9,7 @@ A hipster command line task applicaiton for me to put my newly learn ruby skills
     hiptask add CONTENT # adds a new task
     hiptask do ID # marks a task as complete
     hiptask undo ID # reverts task to normal
+    hiptask update ID CONTENT # update task content
     hiptask delete ID # deletes a task forever
 
 ### Feedback
