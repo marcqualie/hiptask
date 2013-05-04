@@ -7,6 +7,7 @@ module Hiptask
 
     class CLI < Thor
 
+        default_task :list
 
         @@config = {}
         @@config_file = ENV['HOME'] + '/.hiptask/config.yml'

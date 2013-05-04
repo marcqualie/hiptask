@@ -4,7 +4,8 @@ A hipster command line task applicaiton for me to put my newly learn ruby skills
 
 ### Usage
 
-    hiptask # prints help
+    hiptask # displays your task list
+    hiptask help # full list of commands
     hiptask list # displays your task list
     hiptask add CONTENT # adds a new task
     hiptask do ID # marks a task as complete
