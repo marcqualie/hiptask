@@ -5,4 +5,9 @@ $:.unshift File.expand_path(File.dirname(__FILE__) + '/../lib')
 
 # Initialize CLI tool
 require 'hiptask/cli'
-Hiptask::CLI.start(ARGV)
+
+begin
+    Hiptask::CLI.start(ARGV)
+rescue
+    $stderr.puts "\n  \033[31;1mHiptask Error:\033[0;31m #{$!.message}\033[0m\n\n"
+end
