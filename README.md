@@ -10,6 +10,7 @@ A hipster command line task applicaiton for me to put my newly learn ruby skills
     hiptask do ID # marks a task as complete
     hiptask undo ID # reverts task to normal
     hiptask update ID CONTENT # update task content
+    hiptask config [ACTION] [KEY] [VALUE] # manipulate config variables
     hiptask delete ID # deletes a task forever
 
 ### Feedback
