@@ -2,6 +2,12 @@
 
 A hipster command line task applicaiton for me to put my newly learn ruby skills to practical use.
 
+
+### Install
+
+    gem install hiptask
+
+
 ### Usage
 
     hiptask # displays your task list
@@ -14,6 +20,14 @@ A hipster command line task applicaiton for me to put my newly learn ruby skills
     hiptask config [ACTION] [KEY] [VALUE] # manipulate config variables
     hiptask delete ID # deletes a task forever
 
+
+### Tips
+
+If you want to store you Hiptasks online, Dropbox is the easiest way
+
+    hiptask config set tasks_list /path/to/Dropbox/hiptasks.txt
+
+
 ### Feedback
 
-I do realise this code won't be the best as it's very my first ruby project. However, I will apreciate any feedback you can give me on the project or my Ruby skills in general.
+I do realise this code won't be the best as it's my very first ruby project. However, I will apreciate any feedback you can give me on the project or my Ruby skills in general.
