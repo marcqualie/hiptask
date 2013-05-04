@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+# Add lib to ruby path
+$:.unshift File.expand_path(File.dirname(__FILE__) + '/../lib')
+
+# Initialize CLI tool
+require 'hiptask/cli'
+Hiptask::CLI.start(ARGV)
