@@ -1,16 +1,64 @@
 require 'thor'
 require 'hiptask/list'
 require 'hiptask/version'
+require 'yaml'
 
 module Hiptask
 
     class CLI < Thor
 
-        @@filename = './tasks.txt'
+
+        @@config = {}
+        @@config_file = ENV['HOME'] + '/.hiptask/config.yml'
+        @@tasks_file = ENV['HOME'] + '/.hiptask/tasks.txt'
+
 
         def self.start(argv)
-            @@list = List.new(@@filename)
+
+            # Config
+            config_dir = File.dirname(@@config_file)
+            Dir.mkdir(config_dir) unless Dir.exists? config_dir
+            unless File.exists? @@config_file
+                file = File.open(@@config_file, "w+") { |file |
+                    file.puts "tasks_file: " + @@tasks_file
+                }
+            end
+            @@config = YAML::load_file(@@config_file)
+            @@tasks_file = @@config['tasks_file'] if @@config['tasks_file']
+
+            # Environment
+            @@list = List.new(@@tasks_file)
+
             super argv
+
+        end
+
+
+        desc "config [ACTION] [KEY] [VAL]", "Get a config variable"
+        def config(action=nil, key=nil, value=nil)
+            case action
+                when 'get'
+                    puts @@config[key]
+                when 'set'
+                    if value
+                        @@config[key] = value
+                        puts key + ' = ' + value.to_s
+                    else
+                        @@config.delete(key) unless value
+                        puts "deleted " + key
+                    end
+                    File.open(@@config_file, "w") { |file|
+                        YAML.dump(@@config, file)
+                    }
+                when 'delete'
+                    puts "deleted " + key
+                    @@config.delete(key)
+                    File.open(@@config_file, "w") { |file|
+                        YAML.dump(@@config, file)
+                    }
+                else
+                    puts @@config
+                end
         end
 
 
