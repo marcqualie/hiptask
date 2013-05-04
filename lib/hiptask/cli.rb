@@ -50,9 +50,16 @@ module Hiptask
         end
 
 
-        desc "undo ID", "Complete a task"
+        desc "undo ID", "Un-complete a task"
         def undo(id)
             @@list.undo(id)
+            list
+        end
+
+
+        desc "update ID CONTENT", "Update a task"
+        def update(id, content)
+            @@list.update(id, content)
             list
         end
 

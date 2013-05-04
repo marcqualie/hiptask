@@ -1,4 +1,4 @@
-## Simple
+## Hiptask
 
 A hipster command line task applicaiton for me to put my newly learn ruby skills to practical use.
 

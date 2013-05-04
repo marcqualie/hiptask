@@ -62,6 +62,16 @@ module Hiptask
         end
 
 
+        def update(id, content)
+            id = id.to_i - 1
+            raise "ID must be greater than 0" if id < 0
+            raise "Task not found" unless @items[id]
+            done = @items[id].start_with? ">"
+            @items[id] = (done ? ">" : "") + content
+            save
+        end
+
+
         def delete(id)
             id = id.to_i - 1
             raise "ID must be greater than 0" if id < 0
