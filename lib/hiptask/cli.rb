@@ -7,6 +7,8 @@ module Hiptask
 
     class CLI < Thor
 
+        include Thor::Shell
+
         default_task :list
 
 
@@ -68,25 +70,28 @@ module Hiptask
         desc "list", "Display your task list"
         def list()
 
-            puts " "
-            puts "  \033[33m[ \033[1m#{@@message}\033[0;33m ]\033[0m\n\n" if @@message
+            say "\n"
+            if @@message
+                say "  [ #{@@message} ]\n", Color::GREEN
+                return
+            end
 
-            puts "  \033[32;1m#{@@list.items.length} Items\033[0m"
-            puts " "
+            say "  #{@@list.items.length} Items", Color::GREEN
+            say "\n"
             if @@list.items.length > 0
                 @@list.items.each_with_index { |item, index|
                     index = index + 1
-                    print "  \033[33m#{index.to_s.ljust(2)}\033[0m"
+                    say "  #{index.to_s.ljust(2)}", Color::YELLOW
                     if item.start_with? ">"
-                        print " [x] "
-                        puts "#{item[1, item.length - 1]}"
+                        say " [x] "
+                        say "#{item[1, item.length - 1]}"
                     else
-                        print " [ ] "
-                        puts "#{item}"
+                        say " [ ] "
+                        say "#{item}"
                     end
                 }
             else
-                puts "  \033[33mAdd a new task with: \033[1mhiptask add \"Get milk\"\033[0m"
+                say "  Add a new task with: hiptask add \"Get milk\"", Color::YELLOW
             end
             puts " "
 
