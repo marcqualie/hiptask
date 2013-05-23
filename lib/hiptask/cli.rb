@@ -140,7 +140,7 @@ module Hiptask
 
         desc "version", "Displays current version"
         def version
-            puts "Hiptask #{Hiptask::VERSION}"
+            puts "hiptask-#{Hiptask::VERSION}"
         end
 
 

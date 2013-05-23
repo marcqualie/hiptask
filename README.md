@@ -3,9 +3,17 @@
 A hipster command line task applicaiton for me to put my newly learn ruby skills to practical use.
 
 
-### Install
+### Install (via rubygems.org)
 
     gem install hiptask
+
+
+### Install (via git)
+
+    git clone git@github.com:marcqualie/hiptask.git
+    cd hiptask
+    make
+    make install
 
 
 ### Usage
@@ -19,6 +27,7 @@ A hipster command line task applicaiton for me to put my newly learn ruby skills
     hiptask update ID CONTENT # update task content
     hiptask config [ACTION] [KEY] [VALUE] # manipulate config variables
     hiptask delete ID # deletes a task forever
+    hiptask version # displays current version
 
 
 ### Tips
