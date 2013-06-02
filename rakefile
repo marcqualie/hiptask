@@ -1,0 +1,31 @@
+# Include Hiptask
+$:.unshift File.expand_path(File.dirname(__FILE__) + '/lib')
+require 'hiptask/version'
+
+task :default => [:configure]
+gemfile = "hiptask-#{Hiptask::VERSION}.gem"
+
+
+# Build Gem File
+task :configure do
+    sh "gem build hiptask.gemspec"
+end
+
+
+# Install
+task :install do
+    raise "No gem file to install" unless File.exists? gemfile
+    sh "gem install #{gemfile}"
+end
+
+
+# Uninstall
+task :uninstall do
+    sh "gem uninstall -a -i -x hiptask"
+end
+
+
+# Clean
+task :clean do
+    File.delete gemfile
+end
