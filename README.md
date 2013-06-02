@@ -3,6 +3,11 @@
 A hipster command line task applicaiton for me to put my newly learn ruby skills to practical use.
 
 
+### Build Status
+
+[![Build Status](https://travis-ci.org/marcqualie/hiptask.png?branch=master)](https://travis-ci.org/marcqualie/hiptask)
+
+
 ### Install (via rubygems.org)
 
     gem install hiptask
@@ -12,8 +17,8 @@ A hipster command line task applicaiton for me to put my newly learn ruby skills
 
     git clone git@github.com:marcqualie/hiptask.git
     cd hiptask
-    make
-    make install
+    rake build
+    rake install
 
 
 ### Usage
@@ -30,13 +35,23 @@ A hipster command line task applicaiton for me to put my newly learn ruby skills
     hiptask version # displays current version
 
 
-### Tips
+### Tips &amp; Tricks
 
 If you want to store you Hiptasks online, Dropbox is the easiest way
 
-    hiptask config set tasks_list /path/to/Dropbox/hiptasks.txt
+    hiptask config set tasks_file /path/to/Dropbox/hiptask.txt
 
 
-### Feedback
+### Roadmap
 
-I do realise this code won't be the best as it's my very first ruby project. However, I will apreciate any feedback you can give me on the project or my Ruby skills in general.
+- Multiple Lists
+- List sorting
+- Meta Data
+- Task Export/Import
+- Database Storage (Obviously, Redis)
+- Web UI
+
+
+### Contributing
+
+Patches and feature requests are more than welcome on [Gihub](https://github.com/marcqualie/hiptask) so feel free to fill up the issue board.
