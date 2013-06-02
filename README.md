@@ -54,4 +54,4 @@ If you want to store you Hiptasks online, Dropbox is the easiest way
 
 ### Contributing
 
-Patches and feature requests are more than welcome on [Gihub](https://github.com/marcqualie/hiptask) so feel free to fill up the issue board.
+Patches and feature requests are more than welcome on [Github](https://github.com/marcqualie/hiptask) so feel free to fill up the issue board.
