@@ -1,13 +1,14 @@
 # Include Hiptask
-$:.unshift File.expand_path(File.dirname(__FILE__) + '/lib')
+$:.unshift 'lib'
 require 'hiptask/version'
+require 'rake/testtask'
 
-task :default => [:configure]
+task :default => [:test, :build]
 gemfile = "hiptask-#{Hiptask::VERSION}.gem"
 
 
 # Build Gem File
-task :configure do
+task :build do
     sh "gem build hiptask.gemspec"
 end
 
@@ -28,4 +29,12 @@ end
 # Clean
 task :clean do
     File.delete gemfile
+end
+
+
+# Test
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/*.rb']
+  t.verbose = true
 end
