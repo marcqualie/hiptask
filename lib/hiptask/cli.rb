@@ -81,7 +81,7 @@ module Hiptask
             if @@list.items.length > 0
                 @@list.items.each_with_index { |item, index|
                     index = index + 1
-                    say "  #{index.to_s.ljust(2)}", Color::YELLOW
+                    say "  #{index.to_s.ljust(3)}", Color::YELLOW
                     if item.start_with? ">"
                         say " [x] "
                         say "#{item[1, item.length - 1]}"
